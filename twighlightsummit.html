@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twilight Summit 2023</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --navy: #0a1a2d;
+            --deep-blue: #162a47;
+            --purple: #4e3d8a;
+            --soft-purple: #7a6b9e;
+            --pink: #d47fa6;
+            --gold: #ffc857;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--navy);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--gold);
+            color: var(--navy);
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--pink);
+            color: var(--light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--pink), var(--gold));
+            border-radius: 2px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background-color: rgba(10, 26, 45, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        header.scrolled {
+            background-color: rgba(10, 26, 45, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light);
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(10, 26, 45, 0.7), rgba(10, 26, 45, 0.7)), url('https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .event-details {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .detail-item i {
+            margin-right: 10px;
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        /* Countdown Timer */
+        .countdown {
+            background-color: var(--deep-blue);
+            padding: 60px 0;
+        }
+
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            min-width: 150px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-10px);
+            background-color: rgba(255, 200, 87, 0.1);
+        }
+
+        .countdown-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+
+        .countdown-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--navy);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .highlights {
+            list-style: none;
+        }
+
+        .highlights li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .highlights i {
+            color: var(--gold);
+            margin-right: 15px;
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Speakers Section */
+        .speakers {
+            background-color: var(--deep-blue);
+        }
+
+        .speakers-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .speaker-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .speaker-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .speaker-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .speaker-image {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .speaker-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .speaker-card:hover .speaker-image img {
+            transform: scale(1.1);
+        }
+
+        .speaker-info {
+            padding: 20px;
+        }
+
+        .speaker-name {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            color: var(--gold);
+        }
+
+        .speaker-title {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 15px;
+        }
+
+        .speaker-bio {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .speaker-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .speaker-social a {
+            color: var(--light);
+            transition: color 0.3s ease;
+        }
+
+        .speaker-social a:hover {
+            color: var(--gold);
+        }
+
+        /* Schedule Section */
+        .schedule {
+            background-color: var(--navy);
+        }
+
+        .schedule-container {
+            max-width: 800px;
+            margin: 50px auto 0;
+        }
+
+        .schedule-day {
+            margin-bottom: 40px;
+        }
+
+        .day-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--purple);
+        }
+
+        .schedule-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--gold);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 5px 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .schedule-item:hover {
+            background-color: rgba(255, 200, 87, 0.1);
+            transform: translateX(10px);
+        }
+
+        .schedule-time {
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+
+        .schedule-session {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .schedule-speaker {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        /* Registration Section */
+        .registration {
+            background-color: var(--deep-blue);
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 50px auto 0;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 0 2px var(--gold);
+        }
+
+        .form-submit {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .error-message {
+            color: var(--pink);
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--navy);
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            list-style: none;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links li {
+            margin: 0 15px 10px;
+        }
+
+        .footer-links a {
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: flex;
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--gold);
+            color: var(--navy);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--navy);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .hamburger {
+                display: block;
+                font-size: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .btn {
+                padding: 10px 25px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .countdown-item {
+                min-width: 100px;
+                padding: 20px;
+            }
+
+            .countdown-number {
+                font-size: 2rem;
+            }
+
+            .form-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Twilight<span>Summit</span></a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#speakers">Speakers</a></li>
+                    <li><a href="#schedule">Schedule</a></li>
+                    <li><a href="#registration">Register</a></li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Twilight Summit 2023</h1>
+                <p>The premier event for innovators and thought leaders in technology and design</p>
+                
+                <div class="event-details">
+                    <div class="detail-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>November 15-17, 2023</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Grand Horizon Center, San Francisco</span>
+                    </div>
+                </div>
+                
+                <a href="#registration" class="btn">Register Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Timer -->
+    <section class="countdown">
+        <div class="container">
+            <h2 class="section-title">Event Starts In</h2>
+            <div class="countdown-container">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">About The Event</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Twilight Summit brings together the brightest minds in technology, design, and innovation for three days of inspiration, networking, and cutting-edge discussions.</p>
+                    <p>Our 2023 theme, "Beyond the Horizon," explores the future of human-centered technology and its impact on society.</p>
+                    
+                    <ul class="highlights">
+                        <li>
+                            <i class="fas fa-star"></i>
+                            <span>Keynote speeches from industry leaders</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-star"></i>
+                            <span>Interactive workshops and hands-on sessions</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-star"></i>
+                            <span>Exclusive networking opportunities</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-star"></i>
+                            <span>Cutting-edge product demonstrations</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Conference attendees">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speakers Section -->
+    <section class="speakers" id="speakers">
+        <div class="container">
+            <h2 class="section-title">Featured Speakers</h2>
+            <div class="speakers-container">
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Speaker 1">
+                    </div>
+                    <div class="speaker-info">
+                        <h3 class="speaker-name">Dr. Sarah Chen</h3>
+                        <p class="speaker-title">Chief AI Officer, NeuroTech</p>
+                        <p class="speaker-bio">Pioneer in neural network applications and ethical AI development.</p>
+                        <div class="speaker-social">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Speaker 2">
+                    </div>
+                    <div class="speaker-info">
+                        <h3 class="speaker-name">Marcus Johnson</h3>
+                        <p class="speaker-title">Creative Director, PixelForge</p>
+                        <p class="speaker-bio">Award-winning designer specializing in immersive digital experiences.</p>
+                        <div class="speaker-social">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Speaker 3">
+                    </div>
+                    <div class="speaker-info">
+                        <h3 class="speaker-name">Elena Rodriguez</h3>
+                        <p class="speaker-title">CEO, FutureSight Labs</p>
+                        <p class="speaker-bio">Visionary entrepreneur developing next-gen AR/VR technologies.</p>
+                        <div class="speaker-social">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="schedule" id="schedule">
+        <div class="container">
+            <h2 class="section-title">Event Schedule</h2>
+            <div class="schedule-container">
+                <div class="schedule-day">
+                    <h3 class="day-title">Day 1 - November 15</h3>
+                    
+                    <div class="schedule-item">
+                        <div class="schedule-time">9:00 AM - 10:00 AM</div>
+                        <h4 class="schedule-session">Registration & Welcome Coffee</h4>
+                    </div>
+                    
+                    <div class="schedule-item">
+                        <div class="schedule-time">10:00 AM - 11:30 AM</div>
+                        <h4 class="schedule-session">Opening Keynote: The Future of Human-Centered Tech</h4>
+                        <p class="schedule-speaker">Dr. Sarah Chen</p>
+                    </div>
+                    
+                    <div class="schedule-item">
+                        <div class="schedule-time">11:45 AM - 1:00 PM</div>
+                        <h4 class="schedule-session">Workshop: Designing for AR/VR Experiences</h4>
+                        <p class="schedule-speaker">Marcus Johnson</p>
+                    </div>
+                </div>
+                
+                <div class="schedule-day">
+                    <h3 class="day-title">Day 2 - November 16</h3>
+                    
+                    <div class="schedule-item">
+                        <div class="schedule-time">9:30 AM - 11:00 AM</div>
+                        <h4 class="schedule-session">Panel Discussion: Ethics in AI Development</h4>
+                        <p class="schedule-speaker">Moderated by Elena Rodriguez</p>
+                    </div>
+                    
+                    <div class="schedule-item">
+                        <div class="schedule-time">11:15 AM - 12:45 PM</div>
+                        <h4 class="schedule-session">Hands-on Session: Neural Networks for Beginners</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section class="registration" id="registration">
+        <div class="container">
+            <h2 class="section-title">Register Now</h2>
+            <div class="form-container">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                        <div class="error-message" id="name-error">Please enter your full name</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="error-message" id="email-error">Please enter a valid email address</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="organization">Organization</label>
+                        <input type="text" id="organization" name="organization">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ticket-type">Ticket Type</label>
+                        <select id="ticket-type" name="ticket-type" required>
+                            <option value="">Select an option</option>
+                            <option value="general">General Admission ($299)</option>
+                            <option value="student">Student Pass ($149)</option>
+                            <option value="vip">VIP Experience ($599)</option>
+                        </select>
+                        <div class="error-message" id="ticket-error">Please select a ticket type</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dietary">Dietary Requirements</label>
+                        <textarea id="dietary" name="dietary" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-submit">
+                        <button type="submit" class="btn">Complete Registration</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Twilight<span>Summit</span></div>
+                
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#speakers">Speakers</a></li>
+                    <li><a href="#schedule">Schedule</a></li>
+                    <li><a href="#registration">Register</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                </div>
+                
+                <p class="copyright">© 2023 Twilight Summit. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const navLinksItems = document.querySelectorAll('.nav-links li');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        navLinksItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Sticky Navigation
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 0);
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Countdown Timer
+        const countdown = () => {
+            const countDate = new Date('November 15, 2023 09:00:00').getTime();
+            const now = new Date().getTime();
+            const gap = countDate - now;
+
+            // Time calculations
+            const second = 1000;
+            const minute = second * 60;
+            const hour = minute * 60;
+            const day = hour * 24;
+
+            // Calculate remaining time
+            const textDay = Math.floor(gap / day);
+            const textHour = Math.floor((gap % day) / hour);
+            const textMinute = Math.floor((gap % hour) / minute);
+            const textSecond = Math.floor((gap % minute) / second);
+
+            // Update HTML
+            document.getElementById('days').innerText = textDay < 10 ? `0${textDay}` : textDay;
+            document.getElementById('hours').innerText = textHour < 10 ? `0${textHour}` : textHour;
+            document.getElementById('minutes').innerText = textMinute < 10 ? `0${textMinute}` : textMinute;
+            document.getElementById('seconds').innerText = textSecond < 10 ? `0${textSecond}` : textSecond;
+        };
+
+        // Run countdown every second
+        setInterval(countdown, 1000);
+        countdown(); // Initial call
+
+        // Scroll Reveal Animation for Speakers
+        const speakerCards = document.querySelectorAll('.speaker-card');
+        const speakerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        speakerCards.forEach((card, index) => {
+            // Add delay based on index for staggered animation
+            card.style.transitionDelay = `${index * 0.1}s`;
+            speakerObserver.observe(card);
+        });
+
+        // Form Validation
+        const form = document.getElementById('registerForm');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const ticketSelect = document.getElementById('ticket-type');
+        const nameError = document.getElementById('name-error');
+        const emailError = document.getElementById('email-error');
+        const ticketError = document.getElementById('ticket-error');
+
+        const validateEmail = (email) => {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        };
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let isValid = true;
+
+            // Validate name
+            if (nameInput.value.trim() === '') {
+                nameError.style.display = 'block';
+                isValid = false;
+            } else {
+                nameError.style.display = 'none';
+            }
+
+            // Validate email
+            if (!validateEmail(emailInput.value.trim())) {
+                emailError.style.display = 'block';
+                isValid = false;
+            } else {
+                emailError.style.display = 'none';
+            }
+
+            // Validate ticket type
+            if (ticketSelect.value === '') {
+                ticketError.style.display = 'block';
+                isValid = false;
+            } else {
+                ticketError.style.display = 'none';
+            }
+
+            if (isValid) {
+                // Form is valid - you would typically send data to server here
+                alert('Thank you for registering! We will send you a confirmation email shortly.');
+                form.reset();
+            }
+        });
+
+        // Input validation on blur
+        nameInput.addEventListener('blur', () => {
+            if (nameInput.value.trim() === '') {
+                nameError.style.display = 'block';
+            } else {
+                nameError.style.display = 'none';
+            }
+        });
+
+        emailInput.addEventListener('blur', () => {
+            if (!validateEmail(emailInput.value.trim())) {
+                emailError.style.display = 'block';
+            } else {
+                emailError.style.display = 'none';
+            }
+        });
+
+        ticketSelect.addEventListener('change', () => {
+            if (ticketSelect.value !== '') {
+                ticketError.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
